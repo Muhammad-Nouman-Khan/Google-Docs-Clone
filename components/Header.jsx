@@ -2,6 +2,8 @@
 import { auth } from "@/firebase";
 import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+
 const Header = () => {
   const [user] = useAuthState(auth);
   console.log(user);
@@ -37,6 +39,7 @@ const Header = () => {
         />
         <Image src="/apps.svg" height={30} width={30} />
         <img
+          onClick={() => signOut(auth)}
           src={user?.photoURL}
           className="h-10 w-10 rounded-full cursor-pointer ml-2"
           loading="lazy"
